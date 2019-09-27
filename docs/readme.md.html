@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>readme.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h2 id="introduction">Introduction</h2>
+<p>The telerion SDK provides fast and easy way for iOS application to enable <a href="https://www.telerion.com">telerion</a> services which include messaging, voice and video, click-to talk, ICC, AI bots, etc.</p>
+<p>The SDK entry point is the class <a href="https://telerion-gmbh.github.io/ios-quickstart/docs/0.8/Classes/TSDKCore.html">[TSDKCore]</a> which includes the following functions:</p>
+<ul>
+<li>Login  to <a href="https://www.telerion.com">telerion</a> server (or make authentication)</li>
+<li>Logout</li>
+<li>Make outgoing call</li>
+<li>Make outgoing chat</li>
+<li>Fire login/logout events<br>
+Coming soon:</li>
+<li>Register for push notifications to receive notification on incoming call or message</li>
+<li>Handle push notifications</li>
+<li>Process incoming calls</li>
+<li>Process incoming chats</li>
+</ul>
+<p>Example how to make an outgoing call:</p>
+<pre><code>var sdk: TSDKCore?
+var session : TSDKSession?
+
+sdk = TSDKCore("https:/fuse.telerion.com/")
+sdk.login("1234-5678-9012-3456")
+session = sdk.createSession(.call)
+session!.connect("+18449255329")
+...
+</code></pre>
+<p>The class  <a href="https://telerion-gmbh.github.io/ios-quickstart/docs/0.8/Classes/TSDKSession.html">[TSDKSession]</a>  represents an outgoing or incoming call or chat session. Possible session types are in the enum <a href="https://telerion-gmbh.github.io/ios-quickstart/docs/0.8/Classes/TSDKSessionType.html">[TSDKSessionType]</a>.</p>
+<p>The class  <a href="https://telerion-gmbh.github.io/ios-quickstart/docs/0.8/Classes/TSDKSession.html">[TSDKSession]</a> includes various methods and events to manage active call or chat: mute, send DTMF, etc. See more details in our <a href="(https://telerion-gmbh.github.io/ios-quickstart/docs/latest/Classes/Classes.html)">[Classes]</a> description.</p>
+<h2 id="introduction-android">Introduction (Android)</h2>
+<p>The telerion SDK provides fast and easy way for Android application to enable <a href="https://www.telerion.com">telerion</a> services which include messaging, voice and video, click-to talk, ICC, AI bots, etc.</p>
+<p>The SDK entry point is the class <a href="https://telerion-gmbh.github.io/android-quickstart/docs/android/0.8/com/telerion/androidsdk/Core.html">[Core]</a> which includes the following functions:</p>
+<ul>
+<li>Login  to <a href="https://www.telerion.com">telerion</a> server (or make authentication)</li>
+<li>Logout</li>
+<li>Make outgoing call</li>
+<li>Make outgoing chat</li>
+<li>Fire login/logout events<br>
+Coming soon:</li>
+<li>Register for push notifications to receive notification on incoming call or message</li>
+<li>Handle push notifications</li>
+<li>Process incoming calls</li>
+<li>Process incoming chats</li>
+</ul>
+<p>Example how to make an outgoing call:</p>
+<pre><code>import com.telerion.androidsdk.Core;  
+import com.telerion.androidsdk.CoreListener;  
+import com.telerion.androidsdk.ChatMessage;  
+import com.telerion.androidsdk.CompletionHandler;  
+import com.telerion.androidsdk.Session;  
+import com.telerion.androidsdk.SessionListener;  
+import com.telerion.androidsdk.SessionType;  
+import com.telerion.androidsdk.TelerionError;
+
+Core mCore;
+Session session;
+
+mCore = Core.create(getApplicationContext(), "https:/fuse.telerion.com/");
+mCore.setListener(this);
+mCore.login("1234-5678-9012-3456");
+mCore.createSession(type, new CompletionHandler&lt;Session&gt;() {  
+    @Override  
+	  public void onSuccess(Session session) {  
+        if (null != ownNumber)  
+           session.setOwnNumber(ownNumber);  
+        session.setListener(MainActivity.this);  
+        session.connect("+18449255329");  
+      }  
+
+	@Override  
+	  public void onError(TelerionError e) {  
+        Log.e("MainActivity", "Unable to create session: " + e);  
+      }
+}
+</code></pre>
+<p>The class  <a href="https://telerion-gmbh.github.io/android-quickstart/docs/0.8/com/telerion/androidsdk/Session.html">[Session]</a>  represents an outgoing or incoming call or chat session. Possible session types are in the enum <a href="https://telerion-gmbh.github.io/android-quickstart/docs/0.8/com/telerion/androidsdk/SessionType.html">[SessionType]</a>.</p>
+<p>The class  <a href="https://telerion-gmbh.github.io/android-quickstart/docs/android/0.8/com/telerion/androidsdk/Session.html">[Session]</a> includes various methods and events to manage active call or chat: mute, send DTMF, etc. See more details in our Classes description.</p>
+</div>
+</body>
+
+</html>
